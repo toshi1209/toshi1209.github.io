@@ -135,6 +135,7 @@ a {
   display: block;
   width: max-content;
   will-change: transform;
+  animation: neko-stroll var(--pace, 22s) linear infinite;
 }
 
 .roam .neko {
@@ -150,65 +151,62 @@ a {
   }
 }
 
-@keyframes neko-pace {
+@keyframes neko-stroll {
   0% {
-    transform: translateX(var(--from, 28vw));
+    transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1));
+  }
+  49.5% {
+    transform: translateX(var(--to, -36vw)) scaleX(var(--out, 1));
+  }
+  50% {
+    transform: translateX(var(--to, -36vw)) scaleX(var(--back, -1));
   }
   100% {
-    transform: translateX(var(--to, -36vw));
+    transform: translateX(var(--from, 36vw)) scaleX(var(--back, -1));
   }
 }
 
 .roam-a {
-  --from: 42vw;
-  --to: -38vw;
-  animation: neko-pace 22s linear infinite alternate;
+  --from: 46vw;
+  --to: -40vw;
+  --out: 1;
+  --back: -1;
+  --pace: 24s;
 }
 
 .roam-b {
-  --from: -36vw;
-  --to: 40vw;
-  animation: neko-pace 26s linear infinite alternate;
-}
-
-.roam-b .neko {
-  transform: scaleX(-1);
-  animation: neko-bob-flip 0.55s ease-in-out infinite alternate;
+  --from: -40vw;
+  --to: 44vw;
+  --out: -1;
+  --back: 1;
+  --pace: 28s;
 }
 
 .roam-c {
-  --from: -8vw;
-  --to: 18vw;
-  animation: neko-pace 18s linear infinite alternate;
+  --from: -12vw;
+  --to: 20vw;
+  --out: -1;
+  --back: 1;
+  --pace: 20s;
 }
 
 .roam-d {
-  --from: 22vw;
-  --to: -14vw;
-  animation: neko-pace 20s linear infinite alternate;
-}
-
-.roam-d .neko {
-  transform: scaleX(-1);
-  animation: neko-bob-flip 0.58s ease-in-out infinite alternate;
-}
-
-@keyframes neko-bob-flip {
-  from {
-    transform: scaleX(-1) translateY(0) rotate(1.2deg);
-  }
-  to {
-    transform: scaleX(-1) translateY(-5px) rotate(-1.4deg);
-  }
+  --from: 24vw;
+  --to: -16vw;
+  --out: 1;
+  --back: -1;
+  --pace: 22s;
 }
 
 .roam-wash {
   position: absolute;
   right: 0;
   top: 3.4rem;
-  --from: 2rem;
-  --to: -6rem;
-  animation: neko-pace 28s ease-in-out infinite alternate;
+  --from: 3rem;
+  --to: -7rem;
+  --out: 1;
+  --back: -1;
+  --pace: 32s;
   pointer-events: none;
 }
 
@@ -332,6 +330,7 @@ h1 {
   padding: 0 0 3.6rem;
 }
 
+.h2,
 h2 {
   padding-top: 1.8rem;
   font-size: 0.82rem;
@@ -428,14 +427,6 @@ h2 {
     grid-template-columns: 1fr;
     gap: 0.12rem;
     padding: 1rem 0;
-  }
-
-  .roam-a,
-  .roam-b,
-  .roam-c,
-  .roam-d {
-    --from: 28vw;
-    --to: -32vw;
   }
 }
 
