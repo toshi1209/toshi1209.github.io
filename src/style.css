@@ -1,8 +1,10 @@
 :root {
+  --paper: #ffffff;
+  --paper-soft: #f7f4f0;
+  --ink: #241c28;
+  --ink-soft: #5c5260;
   --dusk: #2a2140;
   --dusk-deep: #1c1730;
-  --paper: #e8dfea;
-  --ink: #2f2438;
   --lantern: #e09a4a;
   --lantern-glow: #f3c27a;
   --petal: #c9849a;
@@ -10,7 +12,7 @@
   --wood: #5c4032;
   --wood-light: #8b6348;
   --line: #c9b896;
-  --street: #241c38;
+  --street: #ffffff;
   --display: "Yuji Syuku", "Yu Mincho", "Hiragino Mincho ProN", serif;
   --body: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
 }
@@ -27,8 +29,8 @@ html {
 
 body {
   margin: 0;
-  color: var(--paper);
-  background: var(--street);
+  color: var(--ink);
+  background: var(--paper);
   font-family: var(--body);
   font-size: 1.08rem;
   line-height: 1.95;
@@ -64,29 +66,18 @@ figure {
   top: -3rem;
   z-index: 12;
   padding: 0.4rem 0.7rem;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .skip:focus {
   top: 0.75rem;
 }
 
-.grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9;
-  opacity: 0.11;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 .roofline {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(232, 223, 234, 0.16), transparent 18%),
-    linear-gradient(180deg, #352a52 0%, var(--dusk) 70%, var(--street) 100%);
+  background: var(--paper);
 }
 
 .moon {
@@ -122,7 +113,7 @@ figure {
     linear-gradient(#5c4032, #5c4032) 50% 100% / 42% 8px no-repeat,
     radial-gradient(circle at 50% 40%, var(--lantern-glow), var(--lantern) 70%);
   border-radius: 50% 50% 46% 46%;
-  box-shadow: 0 0 24px rgba(240, 162, 74, 0.38);
+  box-shadow: 0 0 18px rgba(240, 162, 74, 0.28);
   animation: glow 3.8s ease-in-out infinite;
 }
 
@@ -150,7 +141,7 @@ figure {
 
 @keyframes glow {
   50% {
-    filter: brightness(1.2);
+    filter: brightness(1.12);
   }
 }
 
@@ -163,13 +154,7 @@ figure {
 .street {
   position: relative;
   padding: 0 0 3rem;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 18px,
-      rgba(201, 184, 150, 0.05) 18px 19px
-    ),
-    var(--street);
+  background: var(--paper);
 }
 
 .street::before,
@@ -178,16 +163,16 @@ figure {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 12px;
-  background: linear-gradient(90deg, #1a1430, #2b223f);
+  width: 10px;
+  background: linear-gradient(90deg, #efe8df, #f7f3ee);
 }
 
 .street::before {
-  left: -12px;
+  left: -10px;
 }
 
 .street::after {
-  right: -12px;
+  right: -10px;
   transform: scaleX(-1);
 }
 
@@ -198,7 +183,7 @@ figure {
 .rod {
   height: 10px;
   background: linear-gradient(180deg, #9a7354, var(--wood));
-  box-shadow: 0 4px 0 #16102a;
+  box-shadow: 0 3px 0 #d8c4b0;
 }
 
 .noren {
@@ -216,16 +201,16 @@ figure {
     linear-gradient(
       90deg,
       transparent 0 18%,
-      rgba(232, 223, 234, 0.22) 18% 21%,
+      rgba(255, 255, 255, 0.28) 18% 21%,
       transparent 21%
     ),
     repeating-linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.04) 0 8px,
+      rgba(255, 255, 255, 0.06) 0 8px,
       transparent 8px 16px
     ),
     var(--leaf);
-  color: var(--paper);
+  color: #f7f4ef;
   font-size: clamp(2.4rem, 9vw, 3.3rem);
   clip-path: polygon(
     0 0,
@@ -254,16 +239,21 @@ h1 {
 
 .lead {
   margin-top: 1rem;
-  color: color-mix(in srgb, var(--paper) 84%, var(--petal));
+  color: var(--ink-soft);
 }
 
 .sakura {
-  width: 13.5rem;
-  margin: 1.8rem 0 0;
+  width: min(18rem, 78%);
+  margin: 1.6rem 0 0;
+}
+
+.sakura img {
+  width: 100%;
+  height: auto;
 }
 
 .sakura figcaption {
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
   color: var(--petal);
   font-family: var(--display);
   font-size: 1.15rem;
@@ -280,7 +270,7 @@ h2 {
 
 .shop-line {
   margin: 0.55rem 0 1.3rem;
-  color: color-mix(in srgb, var(--paper) 76%, var(--line));
+  color: var(--ink-soft);
 }
 
 .plaque {
@@ -298,7 +288,7 @@ h2 {
     linear-gradient(145deg, #d7a56c 0%, #c08958 42%, #8b6348 100%);
   box-shadow:
     inset 0 0 0 3px #3d2a1d,
-    6px 10px 0 #16102a;
+    6px 10px 0 #d8c4b0;
   transform: rotate(-1.2deg);
 }
 
@@ -357,9 +347,8 @@ h2 {
   padding: 1.3rem 1rem 0.3rem;
   border: 12px solid #6b4e3d;
   outline: 3px solid #2a1a12;
-  background:
-    radial-gradient(circle at 50% 28%, #3d3358, #0e0a1a 70%);
-  box-shadow: 0 0 28px rgba(243, 194, 122, 0.16);
+  background: radial-gradient(circle at 50% 28%, #3d3358, #0e0a1a 70%);
+  box-shadow: 0 8px 20px rgba(36, 28, 40, 0.12);
 }
 
 .star-tree {
@@ -373,23 +362,23 @@ h2 {
 }
 
 .workshop-copy {
-  color: color-mix(in srgb, var(--paper) 84%, var(--lantern-glow));
+  color: var(--ink-soft);
 }
 
 .end {
   padding: 1.8rem 0 3.2rem;
-  border-top: 1px solid color-mix(in srgb, var(--line) 32%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
 }
 
 .end a {
-  color: var(--lantern-glow);
+  color: #9a5a1e;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.28em;
 }
 
 .end a:hover,
 .end a:focus-visible {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 :focus-visible {
