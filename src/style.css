@@ -233,6 +233,7 @@ h1 {
 }
 
 .seal {
+  position: relative;
   background: var(--petal);
   border: 1px solid var(--line);
   border-radius: 1.4rem;
@@ -243,10 +244,46 @@ h1 {
 .seal img {
   width: 100%;
   height: auto;
-  aspect-ratio: 560 / 834;
-  object-fit: cover;
-  object-position: center top;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  object-position: center bottom;
   border-radius: 0.85rem;
+  background: #fff8f6;
+  animation: cat-play 2.8s ease-in-out infinite;
+}
+
+.play-loop {
+  pointer-events: none;
+  position: absolute;
+  inset: 0.85rem;
+  width: calc(100% - 1.7rem);
+  height: calc(100% - 1.7rem);
+  overflow: visible;
+}
+
+.play-loop g {
+  transform-origin: 50% 50%;
+}
+
+.bat-p1 { animation: petal-play 2.4s linear infinite; }
+.bat-p2 { animation: petal-play 2.9s linear infinite 0.3s; }
+.bat-p3 { animation: petal-play 3.3s linear infinite 0.8s; }
+.bat-p4 { animation: petal-play 2.6s linear infinite 1.2s; }
+.bat-p5 { animation: petal-play 3.1s linear infinite 1.6s; }
+
+@keyframes cat-play {
+  0%, 100% { transform: rotate(-0.5deg) translateY(0); }
+  35% { transform: rotate(1.4deg) translateY(-3px); }
+  68% { transform: rotate(-0.8deg) translateY(1px); }
+}
+
+@keyframes petal-play {
+  0%   { transform: translate(210px, 40px) rotate(0deg) scale(0.7); opacity: 0; }
+  12%  { opacity: 1; }
+  38%  { transform: translate(150px, 160px) rotate(120deg) scale(1); opacity: 1; }
+  58%  { transform: translate(88px, 250px) rotate(210deg) scale(1.05); opacity: 1; }
+  78%  { transform: translate(118px, 300px) rotate(300deg) scale(0.9); opacity: 0.85; }
+  100% { transform: translate(160px, 360px) rotate(400deg) scale(0.6); opacity: 0; }
 }
 
 .hero-cat figcaption {
@@ -389,6 +426,11 @@ h2 {
   .hero-cat {
     opacity: 1;
     transform: none;
+    animation: none;
+  }
+
+  .seal img,
+  .play-loop g {
     animation: none;
   }
 }
