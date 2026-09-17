@@ -100,32 +100,32 @@ a {
 }
 
 @keyframes blossom-fall {
-  from {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  to {
-    transform: translate3d(var(--dx, 120px), 122vh, 0) rotate(var(--spin, 480deg));
-  }
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(var(--dx, 120px), 122vh, 0) rotate(var(--spin, 480deg)); }
 }
 
 @keyframes blossom-sway {
-  from {
-    transform: translateX(-22px) rotate(-32deg) scale(0.9);
-  }
-  to {
-    transform: translateX(24px) rotate(34deg) scale(1.12);
-  }
+  from { transform: translateX(-22px) rotate(-32deg) scale(0.9); }
+  to { transform: translateX(24px) rotate(34deg) scale(1.12); }
 }
 
 .neko {
   display: block;
   background-repeat: no-repeat;
-  background-size: 400% 100%;
-  background-position: 0 0;
+  background-size: 100% 100%;
+  background-position: center;
+  -webkit-mask-image: var(--neko-black);
+  mask-image: var(--neko-black);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 400% 100%;
+  mask-size: 400% 100%;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
   animation: neko-step 0.38s infinite;
 }
 
-.neko-black { background-image: var(--neko-black); }
+.neko-black { background-color: #1c1916; background-image: none; }
 .neko-tuxedo { background-image: var(--neko-tuxedo); }
 .neko-tabby { background-image: var(--neko-tabby); }
 .neko-ginger { background-image: var(--neko-ginger); }
@@ -135,10 +135,10 @@ a {
 .neko-silver { background-image: var(--neko-silver); }
 
 @keyframes neko-step {
-  0%, 24.9% { background-position: 0 0; }
-  25%, 49.9% { background-position: 33.334% 0; }
-  50%, 74.9% { background-position: 66.667% 0; }
-  75%, 100% { background-position: 100% 0; }
+  0%, 24.9% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  25%, 49.9% { -webkit-mask-position: 33.334% 0; mask-position: 33.334% 0; }
+  50%, 74.9% { -webkit-mask-position: 66.667% 0; mask-position: 66.667% 0; }
+  75%, 100% { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
 }
 
 .roam {
@@ -153,60 +153,21 @@ a {
 }
 
 @keyframes neko-bob {
-  from {
-    transform: translateY(0) rotate(-1.2deg);
-  }
-  to {
-    transform: translateY(-4px) rotate(1.2deg);
-  }
+  from { transform: translateY(0) rotate(-1.2deg); }
+  to { transform: translateY(-4px) rotate(1.2deg); }
 }
 
 @keyframes neko-stroll {
-  0% {
-    transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1));
-  }
-  49.5% {
-    transform: translateX(var(--to, -36vw)) scaleX(var(--out, 1));
-  }
-  50% {
-    transform: translateX(var(--to, -36vw)) scaleX(var(--back, -1));
-  }
-  100% {
-    transform: translateX(var(--from, 36vw)) scaleX(var(--back, -1));
-  }
+  0% { transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1)); }
+  49.5% { transform: translateX(var(--to, -36vw)) scaleX(var(--out, 1)); }
+  50% { transform: translateX(var(--to, -36vw)) scaleX(var(--back, -1)); }
+  100% { transform: translateX(var(--from, 36vw)) scaleX(var(--back, -1)); }
 }
 
-.roam-a {
-  --from: 46vw;
-  --to: -40vw;
-  --out: 1;
-  --back: -1;
-  --pace: 24s;
-}
-
-.roam-b {
-  --from: -40vw;
-  --to: 44vw;
-  --out: -1;
-  --back: 1;
-  --pace: 28s;
-}
-
-.roam-c {
-  --from: -12vw;
-  --to: 20vw;
-  --out: -1;
-  --back: 1;
-  --pace: 20s;
-}
-
-.roam-d {
-  --from: 24vw;
-  --to: -16vw;
-  --out: 1;
-  --back: -1;
-  --pace: 22s;
-}
+.roam-a { --from: 46vw; --to: -40vw; --out: 1; --back: -1; --pace: 24s; }
+.roam-b { --from: -40vw; --to: 44vw; --out: -1; --back: 1; --pace: 28s; }
+.roam-c { --from: -12vw; --to: 20vw; --out: -1; --back: 1; --pace: 20s; }
+.roam-d { --from: 24vw; --to: -16vw; --out: 1; --back: -1; --pace: 22s; }
 
 .roam-wash {
   position: absolute;
@@ -332,13 +293,8 @@ h1 {
   margin: 0 auto;
 }
 
-.work {
-  padding: 0 0 1.6rem;
-}
-
-.about {
-  padding: 0 0 3.6rem;
-}
+.work { padding: 0 0 1.6rem; }
+.about { padding: 0 0 3.6rem; }
 
 h2 {
   padding-top: 1.8rem;
@@ -354,9 +310,7 @@ h2 {
   list-style: none;
 }
 
-.work ul {
-  margin-top: 0.4rem;
-}
+.work ul { margin-top: 0.4rem; }
 
 .work li {
   display: grid;
@@ -371,9 +325,7 @@ h2 {
   letter-spacing: 0.06em;
 }
 
-.work-body {
-  color: var(--mute);
-}
+.work-body { color: var(--mute); }
 
 .about p {
   margin-top: 0.85rem;
@@ -428,10 +380,7 @@ h2 {
 }
 
 @media (max-width: 720px) {
-  .hero {
-    padding: 2.8rem 0 2.4rem;
-  }
-
+  .hero { padding: 2.8rem 0 2.4rem; }
   .work li {
     grid-template-columns: 1fr;
     gap: 0.12rem;
@@ -440,10 +389,7 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
+  html { scroll-behavior: auto; }
   .sky,
   .roam,
   .neko,
