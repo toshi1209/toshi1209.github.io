@@ -12,6 +12,6 @@ if (img instanceof HTMLImageElement) {
       img.src = 'data:image/webp;base64,' + b64.trim()
     })
     .catch(() => {
-      img.alt = '額に桜のある白いねこ、さくら'
+      img.alt = '額に桜をつけた白い猫、さくら'
     })
 }
