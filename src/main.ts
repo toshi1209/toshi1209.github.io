@@ -9,10 +9,14 @@ if (heroImg instanceof HTMLImageElement) {
   }
 
   const fromParts = () =>
-    fetch('/sakura.b64').then((res) => {
-      if (!res.ok) throw new Error('missing')
-      return res.text()
-    })
+    Promise.all(
+      ['/s1.b64', '/s2.b64'].map((path) =>
+        fetch(path).then((res) => {
+          if (!res.ok) throw new Error('missing')
+          return res.text()
+        }),
+      ),
+    ).then((parts) => parts.join(''))
 
   if (!heroImg.complete || heroImg.naturalWidth === 0) {
     void fromParts().then(paint).catch(() => {})

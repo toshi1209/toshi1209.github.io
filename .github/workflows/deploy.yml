@@ -27,7 +27,13 @@ jobs:
           node-version: 22
           cache: npm
       - name: Decode hero image
-        run: python3 -c "from pathlib import Path; import base64; p=Path('public/sakura.b64'); Path('public/sakura.jpg').write_bytes(base64.b64decode(''.join(p.read_text().split())))"
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64
+          parts = Path('public/s1.b64').read_text() + Path('public/s2.b64').read_text()
+          Path('public/sakura.jpg').write_bytes(base64.b64decode(''.join(parts.split())))
+          PY
       - run: npm ci
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
