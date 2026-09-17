@@ -6,7 +6,6 @@
   --sakura: #e37a93;
   --display: "BIZ UDPMincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
-  --gait: 0.64s;
 }
 
 *,
@@ -95,41 +94,6 @@ a { color: inherit; }
 .walker.neko-spot .fur { fill: #c69656; }
 .walker.neko-silver .fur { fill: #7a7672; }
 
-.torso {
-  transform-origin: 140px 148px;
-  animation: torso-gait var(--gait) ease-in-out infinite;
-}
-.leg-f {
-  transform-origin: 64px 152px;
-  animation: leg-a var(--gait) ease-in-out infinite;
-}
-.leg-m {
-  transform-origin: 134px 150px;
-  animation: leg-b var(--gait) ease-in-out infinite;
-}
-.leg-r {
-  transform-origin: 210px 154px;
-  animation: leg-a var(--gait) ease-in-out infinite;
-}
-
-@keyframes torso-gait {
-  0%, 50%, 100% { transform: rotate(-1.1deg); }
-  25% { transform: rotate(0.9deg); }
-  75% { transform: rotate(-0.3deg); }
-}
-@keyframes leg-a {
-  0%, 100% { transform: rotate(10deg); }
-  50% { transform: rotate(-9deg); }
-}
-@keyframes leg-b {
-  0%, 100% { transform: rotate(-9deg); }
-  50% { transform: rotate(10deg); }
-}
-@keyframes gait-bob {
-  0%, 50%, 100% { transform: translateY(1px); }
-  25%, 75% { transform: translateY(-3px); }
-}
-
 .roam {
   display: block;
   width: max-content;
@@ -137,7 +101,12 @@ a { color: inherit; }
   animation: neko-stroll var(--pace, 22s) linear infinite;
 }
 .roam .walker {
-  animation: gait-bob var(--gait) ease-in-out infinite;
+  transform-origin: 50% 85%;
+  animation: neko-pace 0.7s ease-in-out infinite;
+}
+@keyframes neko-pace {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-2px) rotate(0.8deg); }
 }
 @keyframes neko-stroll {
   0% { transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1)); }
@@ -145,10 +114,10 @@ a { color: inherit; }
   50% { transform: translateX(var(--to, -36vw)) scaleX(var(--back, -1)); }
   100% { transform: translateX(var(--from, 36vw)) scaleX(var(--back, -1)); }
 }
-.roam-a { --from: 46vw; --to: -40vw; --out: 1; --back: -1; --pace: 24s; }
-.roam-b { --from: -40vw; --to: 44vw; --out: -1; --back: 1; --pace: 28s; }
-.roam-c { --from: -12vw; --to: 20vw; --out: -1; --back: 1; --pace: 20s; }
-.roam-d { --from: 24vw; --to: -16vw; --out: 1; --back: -1; --pace: 22s; }
+.roam-a { --from: 46vw; --to: -40vw; --out: 1; --back: -1; --pace: 26s; }
+.roam-b { --from: -40vw; --to: 44vw; --out: -1; --back: 1; --pace: 30s; }
+.roam-c { --from: -12vw; --to: 20vw; --out: -1; --back: 1; --pace: 22s; }
+.roam-d { --from: 24vw; --to: -16vw; --out: 1; --back: -1; --pace: 24s; }
 .roam-wash {
   position: absolute;
   right: 0;
@@ -157,7 +126,7 @@ a { color: inherit; }
   --to: -7rem;
   --out: 1;
   --back: -1;
-  --pace: 32s;
+  --pace: 36s;
   pointer-events: none;
 }
 
@@ -270,5 +239,5 @@ h2 {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .sky, .roam, .torso, .leg-f, .leg-m, .leg-r, .roam .walker { animation: none; }
+  .sky, .roam, .roam .walker { animation: none; }
 }
