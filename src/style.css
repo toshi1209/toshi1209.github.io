@@ -41,7 +41,8 @@ h1,
 h2,
 .mark,
 .work-name,
-.who {
+.who,
+.creed {
   font-family: var(--display);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -217,7 +218,7 @@ h1 {
 
 .lead {
   margin-top: 1.6rem;
-  max-width: 21em;
+  max-width: 22em;
   color: var(--mute);
 }
 
@@ -259,7 +260,8 @@ h2 {
 }
 
 .work ul,
-.stack {
+.stack,
+.creed {
   padding: 0;
   list-style: none;
 }
@@ -270,7 +272,7 @@ h2 {
 
 .work li {
   display: grid;
-  grid-template-columns: 7.5rem 1fr;
+  grid-template-columns: 5.2rem 1fr;
   gap: 0.4rem 1.6rem;
   padding: 1.15rem 0;
   border-bottom: 1px solid var(--line);
@@ -288,6 +290,16 @@ h2 {
 .about p {
   margin-top: 0.85rem;
   max-width: 32em;
+}
+
+.creed {
+  margin-top: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.creed li {
+  padding: 0.15rem 0;
 }
 
 .stack {
