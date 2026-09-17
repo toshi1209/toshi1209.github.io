@@ -6,14 +6,6 @@
   --sakura: #e37a93;
   --display: "BIZ UDPMincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
-  --neko-black: url("/neko/black.svg");
-  --neko-tuxedo: url("/neko/tuxedo.svg");
-  --neko-tabby: url("/neko/tabby.svg");
-  --neko-ginger: url("/neko/ginger.svg");
-  --neko-calico: url("/neko/calico.svg");
-  --neko-siamese: url("/neko/siamese.svg");
-  --neko-spot: url("/neko/spot.svg");
-  --neko-silver: url("/neko/silver.svg");
 }
 
 *,
@@ -61,7 +53,6 @@ a { color: inherit; }
   z-index: 6;
   overflow: hidden;
 }
-
 .blossom {
   position: absolute;
   top: -10vh;
@@ -87,36 +78,41 @@ a { color: inherit; }
   to { transform: translateX(24px) rotate(34deg) scale(1.12); }
 }
 
-.neko {
+.neko { display: block; }
+.walker {
   display: block;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
-  -webkit-mask-image: var(--neko-black);
-  mask-image: var(--neko-black);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 400% 100%;
-  mask-size: 400% 100%;
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
-  animation: neko-step 0.38s infinite;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
+.walker .fur { fill: #1c1916; }
+.walker.neko-tabby .fur { fill: #9a7d5c; }
+.walker.neko-calico .fur { fill: #5c4636; }
+.walker.neko-ginger .fur { fill: #d27a34; }
+.walker.neko-tuxedo .fur { fill: #1c1916; }
+.walker.neko-siamese .fur { fill: #3e2c22; }
+.walker.neko-spot .fur { fill: #c69656; }
+.walker.neko-silver .fur { fill: #7a7672; }
 
-.neko-black { background-color: #1c1916; background-image: none; }
-.neko-tuxedo { background-image: var(--neko-tuxedo); }
-.neko-tabby { background-image: var(--neko-tabby); }
-.neko-ginger { background-image: var(--neko-ginger); }
-.neko-calico { background-image: var(--neko-calico); }
-.neko-siamese { background-image: var(--neko-siamese); }
-.neko-spot { background-image: var(--neko-spot); }
-.neko-silver { background-image: var(--neko-silver); }
-
-@keyframes neko-step {
-  0%, 24.9% { -webkit-mask-position: 0 0; mask-position: 0 0; }
-  25%, 49.9% { -webkit-mask-position: 33.334% 0; mask-position: 33.334% 0; }
-  50%, 74.9% { -webkit-mask-position: 66.667% 0; mask-position: 66.667% 0; }
-  75%, 100% { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+.leg-f {
+  transform-origin: 64px 162px;
+  animation: leg-sw 0.62s ease-in-out infinite;
+}
+.leg-m {
+  transform-origin: 134px 156px;
+  animation: leg-sw2 0.62s ease-in-out infinite;
+}
+.leg-r {
+  transform-origin: 210px 168px;
+  animation: leg-sw 0.62s ease-in-out infinite;
+}
+@keyframes leg-sw {
+  0%, 100% { transform: rotate(12deg); }
+  50% { transform: rotate(-11deg); }
+}
+@keyframes leg-sw2 {
+  0%, 100% { transform: rotate(-11deg); }
+  50% { transform: rotate(12deg); }
 }
 
 .roam {
@@ -125,12 +121,12 @@ a { color: inherit; }
   will-change: transform;
   animation: neko-stroll var(--pace, 22s) linear infinite;
 }
-.roam .neko {
-  animation: neko-step 0.38s infinite, neko-bob 0.38s ease-in-out infinite alternate;
+.roam .walker {
+  animation: neko-bob 0.62s ease-in-out infinite;
 }
 @keyframes neko-bob {
-  from { transform: translateY(0) rotate(-1.2deg); }
-  to { transform: translateY(-4px) rotate(1.2deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 @keyframes neko-stroll {
   0% { transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1)); }
@@ -153,21 +149,13 @@ a { color: inherit; }
   --pace: 32s;
   pointer-events: none;
 }
-.neko-mark {
-  width: 2.2rem;
-  height: 1.5rem;
-  animation: neko-step 0.38s infinite, neko-bob 0.5s ease-in-out infinite alternate;
-}
-.neko-tiny {
-  width: 1.85rem;
-  height: 1.25rem;
-  animation: neko-step 0.38s infinite, neko-bob 0.5s ease-in-out infinite alternate;
-}
 
-.top, .hero, .work, .about, .foot, .spot {
-  position: relative;
-  z-index: 3;
-}
+.neko-mark { width: 2.2rem; height: 1.5rem; }
+.neko-tiny { width: 1.85rem; height: 1.25rem; }
+.neko-wash { width: min(20rem, 58vw); height: 14rem; opacity: 0.18; }
+.neko-mid { width: 7.2rem; height: 5rem; }
+
+.top, .hero, .work, .about, .foot, .spot { position: relative; z-index: 3; }
 .top {
   display: flex;
   align-items: center;
@@ -185,11 +173,7 @@ a { color: inherit; }
   text-decoration: none;
   letter-spacing: 0.18em;
 }
-.top nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem 1.35rem;
-}
+.top nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.35rem; }
 .top nav a { color: var(--mute); text-decoration: none; }
 .top nav a:hover, .top nav a:focus-visible { color: var(--ink); }
 
@@ -199,27 +183,14 @@ a { color: inherit; }
   margin: 0 auto;
   padding: 4.5rem 0 3.4rem;
 }
-.neko-wash {
-  width: min(20rem, 58vw);
-  height: 14rem;
-  opacity: 0.18;
-}
-.who {
-  font-size: 0.82rem;
-  font-weight: 400;
-  letter-spacing: 0.42em;
-}
+.who { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.42em; }
 h1 {
   margin-top: 0.85rem;
   font-size: clamp(2.05rem, 6vw, 3.15rem);
   line-height: 1.45;
   font-weight: 700;
 }
-.lead {
-  margin-top: 1.6rem;
-  max-width: 28em;
-  color: var(--mute);
-}
+.lead { margin-top: 1.6rem; max-width: 28em; color: var(--mute); }
 .spot {
   display: flex;
   justify-content: center;
@@ -228,11 +199,6 @@ h1 {
   min-height: 5.4rem;
   overflow: visible;
   padding: 0.4rem 0;
-}
-.neko-mid {
-  width: 7.2rem;
-  height: 5rem;
-  opacity: 0.92;
 }
 .work, .about, .foot {
   width: min(720px, calc(100% - 2.5rem));
@@ -282,15 +248,8 @@ h2 {
   color: var(--mute);
   font-size: 0.95rem;
 }
-.foot p:first-child {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.foot a {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.28em;
-}
+.foot p:first-child { display: inline-flex; align-items: center; gap: 0.5rem; }
+.foot a { text-decoration-thickness: 1px; text-underline-offset: 0.28em; }
 .foot a:hover, .foot a:focus-visible { color: var(--ink); }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
@@ -300,5 +259,5 @@ h2 {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .sky, .roam, .neko, .neko-mark, .neko-tiny, .roam .neko { animation: none; }
+  .sky, .roam, .leg-f, .leg-m, .leg-r, .roam .walker { animation: none; }
 }
