@@ -103,41 +103,37 @@ a {
 
 .blossom {
   position: absolute;
-  top: -10vh;
+  top: -8vh;
   left: var(--x, 0);
   color: #e37a93;
   transform-origin: 50% 80%;
-  will-change: transform, top;
+  will-change: transform;
   animation: blossom-fall var(--dur, 11s) linear var(--delay, 0s) infinite;
+  filter: drop-shadow(0 3px 5px rgba(227, 122, 147, 0.38));
 }
 
 .blossom svg {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 2px 3px rgba(227, 122, 147, 0.4));
+  animation: blossom-sway var(--sway, 2.2s) ease-in-out var(--delay, 0s) infinite alternate;
 }
 
 @keyframes blossom-fall {
-  0% {
-    top: -10vh;
-    transform: translateX(0) rotate(0deg) scale(1);
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  20% {
-    transform: translateX(var(--dx, 80px)) rotate(70deg) scale(1.08);
+  to {
+    transform: translate3d(var(--dx, 80px), 118vh, 0) rotate(var(--spin, 360deg));
   }
-  40% {
-    transform: translateX(calc(var(--dx, 80px) * -0.35)) rotate(150deg) scale(0.92);
+}
+
+@keyframes blossom-sway {
+  from {
+    transform: translateX(-14px) rotate(-22deg) scale(0.94);
   }
-  62% {
-    transform: translateX(calc(var(--dx, 80px) * 0.75)) rotate(240deg) scale(1.06);
-  }
-  82% {
-    transform: translateX(calc(var(--dx, 80px) * 0.15)) rotate(310deg) scale(0.96);
-  }
-  100% {
-    top: 112vh;
-    transform: translateX(var(--dx, 80px)) rotate(var(--spin, 280deg)) scale(1);
+  to {
+    transform: translateX(16px) rotate(26deg) scale(1.08);
   }
 }
 
@@ -247,8 +243,10 @@ h1 {
 .seal img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  aspect-ratio: 640 / 953;
+  object-fit: cover;
   object-position: center top;
+  border-radius: 0.85rem;
 }
 
 .hero-cat figcaption {
