@@ -15,18 +15,13 @@ if (heroImg instanceof HTMLImageElement) {
   heroImg.addEventListener('error', land)
   window.setTimeout(land, 1600)
 
-  void Promise.all([
-    fetch('/sakura.b64.0'),
-    fetch('/sakura.b64.1'),
-    fetch('/sakura.b64.2'),
-  ])
-    .then(async (parts) => {
-      if (parts.some((res) => !res.ok)) throw new Error('sakura image missing')
-      const chunks = await Promise.all(parts.map((res) => res.text()))
-      return chunks.join('').replace(/\s+/g, '')
+  void fetch('/sakura.b64')
+    .then((res) => {
+      if (!res.ok) throw new Error('sakura image missing')
+      return res.text()
     })
     .then((b64) => {
-      heroImg.src = 'data:image/jpeg;base64,' + b64
+      heroImg.src = 'data:image/jpeg;base64,' + b64.replace(/\s+/g, '')
     })
     .catch(() => {
       heroImg.alt = '入口で待っている白い猫、さくら'
