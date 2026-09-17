@@ -107,13 +107,23 @@ a {
   left: 0;
   color: #e37a93;
   will-change: transform;
+  animation: blossom-fall var(--dur, 12s) linear var(--delay, 0s) infinite;
 }
 
 .blossom svg {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 1px 0 rgba(227, 122, 147, 0.25));
+  filter: drop-shadow(0 1px 0 rgba(227, 122, 147, 0.28));
+}
+
+@keyframes blossom-fall {
+  from {
+    transform: translate3d(var(--x, 0), -10vh, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(calc(var(--x, 0) + var(--dx, 40px)), 110vh, 0) rotate(var(--spin, 280deg));
+  }
 }
 
 .top,
