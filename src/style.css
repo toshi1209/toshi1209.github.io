@@ -83,75 +83,37 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  color: #f4e8ec;
-  filter: drop-shadow(0 1px 0 rgba(20, 18, 22, 0.12));
+  will-change: transform;
+  filter: drop-shadow(0 2px 6px rgba(20, 18, 22, 0.08));
+}
+
+.stray img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sky {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+}
+
+.blossom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #e37a93;
   will-change: transform;
 }
 
-.stray svg {
+.blossom svg {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.stray .tail {
-  transform-box: fill-box;
-  transform-origin: right center;
-  animation: tail 1.1s ease-in-out infinite;
-}
-
-.stray[data-pose="walk"] .leg.a {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: step 0.28s ease-in-out infinite alternate;
-}
-
-.stray[data-pose="walk"] .leg.b {
-  transform-box: fill-box;
-  transform-origin: top center;
-  animation: step 0.28s ease-in-out infinite alternate-reverse;
-}
-
-.stray[data-pose="sit"] .legs {
-  opacity: 0.15;
-}
-
-.stray[data-pose="sit"] .tail {
-  animation-duration: 1.8s;
-}
-
-@keyframes step {
-  from { transform: rotate(-18deg); }
-  to { transform: rotate(16deg); }
-}
-
-@keyframes tail {
-  from { transform: rotate(-12deg); }
-  to { transform: rotate(14deg); }
-}
-
-.petals {
-  pointer-events: none;
-  position: absolute;
-  inset: 0 0 auto;
-  width: 100%;
-  height: min(90vh, 800px);
-  z-index: 0;
-}
-
-.p {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.p1 { animation: drift 18s linear infinite; }
-.p2 { animation: drift 22s linear infinite reverse; }
-.p3 { animation: drift 26s linear infinite; }
-.p4 { animation: drift 20s linear infinite reverse; }
-
-@keyframes drift {
-  from { transform: translateY(0) rotate(0deg); }
-  to { transform: translateY(18px) rotate(12deg); }
+  filter: drop-shadow(0 1px 0 rgba(227, 122, 147, 0.25));
 }
 
 .top,
@@ -235,6 +197,18 @@ h1 {
 .hero-cat {
   justify-self: end;
   width: min(22rem, 100%);
+  opacity: 0;
+  transform: translateY(-28%) rotate(-4deg);
+}
+
+.hero-cat.landed {
+  animation: alight 1.8s cubic-bezier(0.22, 0.8, 0.28, 1) forwards;
+}
+
+@keyframes alight {
+  0% { opacity: 0; transform: translateY(-34%) rotate(-6deg); }
+  55% { opacity: 1; transform: translateY(4%) rotate(1.4deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
 .seal {
@@ -384,17 +358,14 @@ h2 {
     scroll-behavior: auto;
   }
 
-  .p1,
-  .p2,
-  .p3,
-  .p4,
-  .stray .tail,
-  .stray .leg.a,
-  .stray .leg.b {
-    animation: none;
+  .yard,
+  .sky {
+    display: none;
   }
 
-  .yard {
-    display: none;
+  .hero-cat {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

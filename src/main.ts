@@ -1,65 +1,65 @@
 import './style.css'
 
-const img = document.querySelector('.hero-cat img')
+const heroImg = document.querySelector('.hero-cat img')
 
-if (img instanceof HTMLImageElement) {
+if (heroImg instanceof HTMLImageElement) {
   void fetch('/sakura.b64')
     .then((res) => {
       if (!res.ok) throw new Error('sakura image missing')
       return res.text()
     })
     .then((b64) => {
-      img.src = 'data:image/webp;base64,' + b64.trim()
+      heroImg.src = 'data:image/webp;base64,' + b64.trim()
+      heroImg.closest('.hero-cat')?.classList.add('landed')
     })
     .catch(() => {
-      img.alt = '入口で待っている白い猫、さくら'
+      heroImg.alt = '入口で待っている白い猫、さくら'
     })
 }
 
-type Stray = {
+type Walker = {
   el: HTMLElement
   x: number
   y: number
   vx: number
+  face: number
   sitUntil: number
   nextTurn: number
 }
 
-const CAT = `<svg viewBox="0 0 96 54" fill="none" aria-hidden="true">
-  <path class="tail" d="M20 30c-11 4-16-6-13-16" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
-  <ellipse cx="46" cy="31" rx="23" ry="13" fill="currentColor"/>
-  <circle cx="72" cy="22" r="12" fill="currentColor"/>
-  <path d="M63 16l1.5-11 9 9" fill="currentColor"/>
-  <path d="M74 13l9-10 2 12" fill="currentColor"/>
-  <circle cx="77" cy="21" r="1.35" fill="#141216"/>
-  <path d="M80 26c3 1 5 1 7-1" stroke="#141216" stroke-width="1.2" stroke-linecap="round"/>
-  <g class="legs" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
-    <path class="leg a" d="M34 40v11"/>
-    <path class="leg b" d="M43 41v10"/>
-    <path class="leg a" d="M52 40v11"/>
-    <path class="leg b" d="M61 41v10"/>
-  </g>
-</svg>`
+const WALKERS = [
+  { file: '/walk-white.b64', face: 1 },
+  { file: '/walk-cream.b64', face: 1 },
+  { file: '/walk-gray.b64', face: 1 },
+  { file: '/walk-blossom.b64', face: -1 },
+]
 
-const PALETTE = ['#f7f2f3', '#e4d6d9', '#f0c9d2', '#d5cfcb', '#f4e8ec', '#cbb8bc']
+async function loadCat(file: string): Promise<string> {
+  const res = await fetch(file)
+  if (!res.ok) throw new Error(file)
+  const b64 = (await res.text()).trim()
+  return 'data:image/webp;base64,' + b64
+}
 
-function roam() {
+function roam(srcs: string[]) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
   const yard = document.querySelector('.yard')
   if (!(yard instanceof HTMLElement)) return
 
-  const lanes = [0.1, 0.22, 0.38, 0.55, 0.72, 0.86]
+  const lanes = [0.08, 0.2, 0.34, 0.5, 0.68, 0.84]
   const count = window.innerWidth < 800 ? 5 : 8
-  const cats: Stray[] = []
+  const cats: Walker[] = []
   const now = performance.now()
 
   for (let i = 0; i < count; i += 1) {
+    const meta = WALKERS[i % WALKERS.length]
     const el = document.createElement('div')
     el.className = 'stray'
-    el.innerHTML = CAT
-    el.style.color = PALETTE[i % PALETTE.length]
-    el.style.width = `${56 + ((i * 11) % 28)}px`
+    const img = document.createElement('img')
+    img.src = srcs[i % srcs.length]
+    img.alt = ''
+    el.append(img)
+    el.style.width = `${88 + ((i * 17) % 40)}px`
     yard.append(el)
 
     const dir = i % 2 === 0 ? 1 : -1
@@ -67,9 +67,10 @@ function roam() {
       el,
       x: Math.random() * window.innerWidth,
       y: window.innerHeight * lanes[i % lanes.length],
-      vx: dir * (0.55 + Math.random() * 0.85),
-      sitUntil: now + Math.random() * 900,
-      nextTurn: now + 2400 + Math.random() * 5000,
+      vx: dir * (0.45 + Math.random() * 0.7),
+      face: meta.face,
+      sitUntil: now + Math.random() * 600,
+      nextTurn: now + 2800 + Math.random() * 5000,
     })
   }
 
@@ -77,28 +78,25 @@ function roam() {
     const w = window.innerWidth
     const h = window.innerHeight
     for (const cat of cats) {
-      if (t < cat.sitUntil) {
-        cat.el.dataset.pose = 'sit'
-      } else {
-        cat.el.dataset.pose = 'walk'
+      if (t >= cat.sitUntil) {
         cat.x += cat.vx
-        if (cat.x > w + 40) {
-          cat.x = -90
+        if (cat.x > w + 60) {
+          cat.x = -120
           cat.y = h * lanes[Math.floor(Math.random() * lanes.length)]
-        } else if (cat.x < -90) {
-          cat.x = w + 40
+        } else if (cat.x < -120) {
+          cat.x = w + 60
           cat.y = h * lanes[Math.floor(Math.random() * lanes.length)]
         }
         if (t > cat.nextTurn) {
-          if (Math.random() < 0.35) {
-            cat.sitUntil = t + 700 + Math.random() * 1800
+          if (Math.random() < 0.28) {
+            cat.sitUntil = t + 800 + Math.random() * 1600
           } else {
             cat.vx *= -1
           }
-          cat.nextTurn = t + 2200 + Math.random() * 4200
+          cat.nextTurn = t + 2600 + Math.random() * 4200
         }
       }
-      const face = cat.vx >= 0 ? 1 : -1
+      const face = cat.vx >= 0 ? cat.face : -cat.face
       cat.el.style.transform = `translate(${cat.x}px, ${cat.y}px) scaleX(${face})`
     }
     requestAnimationFrame(step)
@@ -107,4 +105,72 @@ function roam() {
   requestAnimationFrame(step)
 }
 
-roam()
+function fallBlossoms() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const sky = document.querySelector('.sky')
+  if (!(sky instanceof HTMLElement)) return
+
+  const petal = `<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 5c2.6 5.2 2.8 9.4 0 14.2C13.2 14.4 13.4 10.2 16 5Zm9.4 4.8c-5 3.4-8.6 5.4-14 6.2 4.6-3.4 8.8-5.2 14-6.2Zm1.8 10.6c-6 .2-10.2-.8-15-4.1 5.2.5 9.8 2.1 15 4.1ZM16 27c-2.6-5.2-2.8-9.4 0-14.2 2.8 4.8 2.6 9 0 14.2Zm-11.2-6.6c6-.2 10.2.8 15 4.1-5.2-.5-9.8-2.1-15-4.1Zm-1.8-10.6c5-3.4 8.6-5.4 14-6.2-4.6 3.4-8.8 5.2-14 6.2Z"/></svg>`
+
+  const count = window.innerWidth < 800 ? 22 : 36
+  type Petal = {
+    el: HTMLElement
+    x: number
+    y: number
+    r: number
+    vy: number
+    spin: number
+    sway: number
+    phase: number
+  }
+  const petals: Petal[] = []
+
+  for (let i = 0; i < count; i += 1) {
+    const el = document.createElement('div')
+    el.className = 'blossom'
+    el.innerHTML = petal
+    const size = 10 + Math.random() * 16
+    el.style.width = `${size}px`
+    el.style.color = Math.random() < 0.35 ? '#f3a3b4' : '#e37a93'
+    el.style.opacity = String(0.55 + Math.random() * 0.4)
+    sky.append(el)
+    petals.push({
+      el,
+      x: Math.random() * window.innerWidth,
+      y: -40 - Math.random() * window.innerHeight,
+      r: Math.random() * 360,
+      vy: 0.35 + Math.random() * 0.7,
+      spin: (Math.random() - 0.5) * 1.8,
+      sway: 12 + Math.random() * 28,
+      phase: Math.random() * Math.PI * 2,
+    })
+  }
+
+  const step = (t: number) => {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    for (const p of petals) {
+      p.y += p.vy
+      p.r += p.spin
+      const x = p.x + Math.sin(t / 700 + p.phase) * p.sway
+      if (p.y > h + 30) {
+        p.y = -30
+        p.x = Math.random() * w
+      }
+      p.el.style.transform = `translate(${x}px, ${p.y}px) rotate(${p.r}deg)`
+    }
+    requestAnimationFrame(step)
+  }
+
+  requestAnimationFrame(step)
+}
+
+void Promise.all(WALKERS.map((c) => loadCat(c.file)))
+  .then((srcs) => {
+    roam(srcs)
+  })
+  .catch(() => {
+    /* images missing: page still works */
+  })
+
+fallBlossoms()
