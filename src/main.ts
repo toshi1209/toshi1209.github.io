@@ -1,6 +1,6 @@
 import './style.css'
 
-const img = document.querySelector('.sakura img')
+const img = document.querySelector('.hero-cat img')
 
 if (img instanceof HTMLImageElement) {
   void fetch('/sakura.b64')
@@ -12,6 +12,6 @@ if (img instanceof HTMLImageElement) {
       img.src = 'data:image/webp;base64,' + b64.trim()
     })
     .catch(() => {
-      img.alt = '案内役のねこ、さくら'
+      img.alt = '額に桜のある白いねこ、さくら'
     })
 }

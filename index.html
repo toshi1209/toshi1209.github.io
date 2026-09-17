@@ -4,167 +4,88 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#FBF9F7" />
     <meta
       name="description"
-      content="ねこだけの夜の横丁。なんでも屋 TOSHI のギルドカードと、星の地図屋。"
+      content="TOSHIのポートフォリオ。さくらというねこと、いま動かしている仕事。"
     />
-    <title>ねこ横丁</title>
+    <title>TOSHI — さくらと、仕事場。</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@500;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <a class="skip" href="#main">本文へ</a>
 
-    <header class="roofline" aria-hidden="true">
-      <svg class="moon" viewBox="0 0 80 80">
-        <circle cx="40" cy="40" r="26" fill="#F3E6C8" stroke="#C9B896" stroke-width="1.5" />
-        <circle cx="50" cy="34" r="22" fill="#ffffff" />
-      </svg>
-      <svg class="houses" viewBox="0 0 1200 280" preserveAspectRatio="xMidYMax meet">
-        <path d="M0 220 L80 140 H210 L250 220 Z" fill="#5a5368" />
-        <path d="M200 220 L280 96 H470 L520 220 Z" fill="#4a445c" />
-        <path d="M500 220 L560 128 H760 L800 220 Z" fill="#615a72" />
-        <path d="M770 220 L850 110 H1040 L1100 220 Z" fill="#3f3a52" />
-        <path d="M1080 220 L1120 150 H1200 V220 Z" fill="#5a5368" />
-        <g fill="#F3C27A">
-          <rect x="120" y="176" width="14" height="18" rx="1" />
-          <rect x="148" y="176" width="14" height="18" rx="1" />
-          <rect x="330" y="150" width="16" height="22" rx="1" />
-          <rect x="360" y="150" width="12" height="16" rx="1" />
-          <rect x="610" y="164" width="14" height="18" rx="1" />
-          <rect x="638" y="168" width="10" height="14" rx="1" />
-          <rect x="900" y="156" width="16" height="22" rx="1" />
-          <rect x="926" y="162" width="12" height="16" rx="1" />
-        </g>
-        <g fill="#E8DFEA" stroke="#C9849A" stroke-width="1.2">
-          <path d="M390 96c0-10 7-16 13-16s13 6 13 16v10H390z" />
-          <path d="M392 84l-5-11 12 6M414 84l5-11-8 7" fill="#C9849A" stroke="none" />
-          <path d="M980 110c0-9 6-14 11-14s11 5 11 14v9h-22z" />
-          <path d="M982 100l-4-10 10 6M1000 100l5-10-7 6" fill="#C9849A" stroke="none" />
-        </g>
-        <path d="M0 220 H1200 V280 H0 Z" fill="#ffffff" />
-        <path d="M0 220 H1200" stroke="#C9B896" stroke-width="3" />
-      </svg>
-      <div class="wire">
-        <span class="chochin"></span>
-        <span class="chochin tall"></span>
-        <span class="chochin"></span>
-        <span class="chochin short"></span>
-        <span class="chochin"></span>
-      </div>
+    <header class="top">
+      <a class="mark" href="#main">TOSHI</a>
+      <nav aria-label="ページ内">
+        <a href="#work">仕事</a>
+        <a href="#about">わたし</a>
+        <a href="https://github.com/toshi1209">GitHub</a>
+      </nav>
     </header>
 
-    <main id="main" class="street">
-      <section class="gate">
-        <div class="rod" aria-hidden="true"></div>
-        <div class="noren" aria-hidden="true">
-          <p>ねこ</p>
-          <p>横丁</p>
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="who">案内役は、さくら。</p>
+          <h1>さくらと、<br />仕事場。</h1>
+          <p class="lead">
+            思いついたら、その日のうちに動かす。<br />
+            採用のまわり、お店のまわり、手元の道具。
+          </p>
         </div>
-        <h1>人間のいない、夜。</h1>
-        <p class="lead">
-          さくらが先に歩いている。<br />
-          この通りに、ひと気はない。
-        </p>
-        <figure class="sakura">
-          <img
-            width="520"
-            height="775"
-            alt="案内役のねこ、さくら"
-          />
+        <figure class="hero-cat">
+          <img width="841" height="784" alt="額に桜のある白いねこ、さくら" />
           <figcaption>さくら</figcaption>
         </figure>
       </section>
 
-      <section class="shop" aria-labelledby="guild-heading">
-        <h2 id="guild-heading">なんでも屋</h2>
-        <p class="shop-line">軒先に、木札が一枚だけ下がっている。</p>
-        <article class="plaque">
-          <p class="plaque-name">TOSHI</p>
-          <p class="plaque-role">なんでも屋のねこ</p>
-          <p class="plaque-body">
-            採用のまわりを歩く。お店のまわりも歩く。職人でも設計図の番人でもなく、届いた話をその夜のうちに動かす。
-          </p>
-          <ul class="stamps">
-            <li>TypeScript</li>
-            <li>Go</li>
-            <li>React</li>
-            <li>AWS</li>
-            <li>Slack</li>
-          </ul>
-        </article>
+      <section class="work" id="work" aria-labelledby="work-heading">
+        <h2 id="work-heading">仕事</h2>
+        <ul>
+          <li>
+            <p class="work-name">本業</p>
+            <p class="work-body">採用とお店のまわりを歩く。届いた話を、その日のうちに形にする。</p>
+          </li>
+          <li>
+            <p class="work-name">起き場</p>
+            <p class="work-body">少人数で、同じ時刻に起きるアラーム。</p>
+          </li>
+          <li>
+            <p class="work-name">立体工房</p>
+            <p class="work-body">写真から、印刷できる立体をつくる。</p>
+          </li>
+          <li>
+            <p class="work-name">Slackの道具</p>
+            <p class="work-body">話しかけるだけで仕事が進む、社内の小さな仕組み。</p>
+          </li>
+        </ul>
       </section>
 
-      <section class="workshop" aria-labelledby="map-heading">
-        <h2 id="map-heading">星の地図屋</h2>
-        <p class="shop-line">屋根裏の窓だけ、あかりがついている。</p>
-        <div class="window">
-          <svg class="star-tree" viewBox="0 0 320 280" role="img" aria-labelledby="tree-title">
-            <title id="tree-title">枝分かれした星の道</title>
-            <defs>
-              <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="2.4" result="b" />
-                <feMerge>
-                  <feMergeNode in="b" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <path
-              d="M160 260 V90 M160 190 L86 132 M160 190 L236 128 M86 132 L54 88 M86 132 L112 74 M236 128 L210 70 M236 128 L278 86"
-              fill="none"
-              stroke="#E8D7A8"
-              stroke-width="2.2"
-            />
-            <g fill="#F3C27A" filter="url(#glow)">
-              <circle cx="160" cy="90" r="7" />
-              <circle cx="86" cy="132" r="5" />
-              <circle cx="236" cy="128" r="5" />
-              <circle cx="54" cy="88" r="4" />
-              <circle cx="112" cy="74" r="4" />
-              <circle cx="210" cy="70" r="4" />
-              <circle cx="278" cy="86" r="4" />
-              <circle cx="160" cy="190" r="4.2" />
-              <circle cx="160" cy="252" r="5" />
-            </g>
-            <circle cx="160" cy="90" r="13" fill="none" stroke="#C9849A" stroke-width="1.6" />
-          </svg>
-          <svg class="window-cat" viewBox="0 0 160 100" aria-hidden="true">
-            <ellipse cx="80" cy="86" rx="46" ry="10" fill="#0e0a1a" />
-            <path
-              d="M44 84c2-28 18-48 36-48s34 20 36 48"
-              fill="#2a243f"
-              stroke="#E8DFEA"
-              stroke-width="2"
-            />
-            <circle cx="80" cy="44" r="22" fill="#2a243f" stroke="#E8DFEA" stroke-width="2" />
-            <path d="M64 28l-8-18 16 10z" fill="#C9849A" />
-            <path d="M94 28l10-18-6 20z" fill="#C9849A" />
-            <path
-              d="M70 44c4 3 8 3 10 0M86 44c4 3 8 3 10 0"
-              fill="none"
-              stroke="#E8DFEA"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </div>
-        <p class="workshop-copy">
-          いまいる場所から、いきたい場所まで。枝のように分かれる道を、箱の中にひろげて見る。星は目標、枝は今日の歩き方。
+      <section class="about" id="about" aria-labelledby="about-heading">
+        <h2 id="about-heading">わたし</h2>
+        <p>
+          TOSHI。職人でも設計図の番人でもなく、領域はあまり選ばない。プロダクト、インフラ、社内ツール、自作キーボードまで、喜ぶ顔が見えるものを先に出す。
         </p>
+        <ul class="stack">
+          <li>TypeScript</li>
+          <li>Go</li>
+          <li>React</li>
+          <li>Swift</li>
+          <li>AWS</li>
+          <li>Slack</li>
+        </ul>
       </section>
     </main>
 
-    <footer class="end">
-      <p>石畳は、ここで途切れる。</p>
-      <p>
-        <a href="https://github.com/toshi1209">GitHub</a>
-      </p>
+    <footer class="foot">
+      <p>また桜のころ、遊びにきてね。</p>
+      <p><a href="https://github.com/toshi1209">github.com/toshi1209</a></p>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>

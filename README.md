@@ -1,6 +1,6 @@
-# ねこ横丁
+# TOSHI
 
-ねこだけの夜の横丁。TOSHI の GitHub Pages です。
+さくらと、仕事場。ポートフォリオです。
 
 ```
 npm install
