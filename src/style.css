@@ -79,20 +79,6 @@ a {
   overflow: hidden;
 }
 
-.stray {
-  position: absolute;
-  top: 0;
-  left: 0;
-  will-change: transform;
-  filter: drop-shadow(0 2px 6px rgba(20, 18, 22, 0.08));
-}
-
-.stray img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 .sky {
   pointer-events: none;
   position: fixed;
@@ -108,15 +94,15 @@ a {
   color: #e37a93;
   transform-origin: 50% 80%;
   will-change: transform;
-  animation: blossom-fall var(--dur, 9s) linear var(--delay, 0s) infinite;
-  filter: drop-shadow(0 4px 6px rgba(227, 122, 147, 0.42));
+  animation: blossom-fall var(--dur, 12s) linear var(--delay, 0s) infinite;
+  filter: drop-shadow(0 2px 4px rgba(227, 122, 147, 0.22));
 }
 
 .blossom svg {
   display: block;
   width: 100%;
   height: auto;
-  animation: blossom-sway var(--sway, 1.6s) ease-in-out var(--delay, 0s) infinite alternate;
+  animation: blossom-sway var(--sway, 2s) ease-in-out var(--delay, 0s) infinite alternate;
 }
 
 @keyframes blossom-fall {
@@ -124,16 +110,16 @@ a {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
   to {
-    transform: translate3d(var(--dx, 120px), 122vh, 0) rotate(var(--spin, 480deg));
+    transform: translate3d(var(--dx, 80px), 122vh, 0) rotate(var(--spin, 360deg));
   }
 }
 
 @keyframes blossom-sway {
   from {
-    transform: translateX(-22px) rotate(-32deg) scale(0.9);
+    transform: translateX(-12px) rotate(-16deg) scale(0.94);
   }
   to {
-    transform: translateX(24px) rotate(34deg) scale(1.12);
+    transform: translateX(14px) rotate(18deg) scale(1.04);
   }
 }
 
@@ -198,13 +184,13 @@ a {
 }
 
 .who {
-  color: var(--sakura);
+  color: var(--mute);
   font-size: 0.95rem;
 }
 
 h1 {
   margin-top: 0.7rem;
-  font-size: clamp(2.7rem, 7.2vw, 4.8rem);
+  font-size: clamp(2.4rem, 6.4vw, 4.2rem);
   line-height: 1.18;
   font-weight: 700;
 }
@@ -249,47 +235,12 @@ h1 {
   object-position: center bottom;
   border-radius: 0.85rem;
   background: #fff8f6;
-  animation: cat-play 2.8s ease-in-out infinite;
-}
-
-.play-loop {
-  pointer-events: none;
-  position: absolute;
-  inset: 0.85rem;
-  width: calc(100% - 1.7rem);
-  height: calc(100% - 1.7rem);
-  overflow: visible;
-}
-
-.play-loop g {
-  transform-origin: 50% 50%;
-}
-
-.bat-p1 { animation: petal-play 2.4s linear infinite; }
-.bat-p2 { animation: petal-play 2.9s linear infinite 0.3s; }
-.bat-p3 { animation: petal-play 3.3s linear infinite 0.8s; }
-.bat-p4 { animation: petal-play 2.6s linear infinite 1.2s; }
-.bat-p5 { animation: petal-play 3.1s linear infinite 1.6s; }
-
-@keyframes cat-play {
-  0%, 100% { transform: rotate(-0.5deg) translateY(0); }
-  35% { transform: rotate(1.4deg) translateY(-3px); }
-  68% { transform: rotate(-0.8deg) translateY(1px); }
-}
-
-@keyframes petal-play {
-  0%   { transform: translate(210px, 40px) rotate(0deg) scale(0.7); opacity: 0; }
-  12%  { opacity: 1; }
-  38%  { transform: translate(150px, 160px) rotate(120deg) scale(1); opacity: 1; }
-  58%  { transform: translate(88px, 250px) rotate(210deg) scale(1.05); opacity: 1; }
-  78%  { transform: translate(118px, 300px) rotate(300deg) scale(0.9); opacity: 0.85; }
-  100% { transform: translate(160px, 360px) rotate(400deg) scale(0.6); opacity: 0; }
 }
 
 .hero-cat figcaption {
   margin-top: 0.55rem;
-  color: var(--sakura);
-  font-size: 1rem;
+  color: var(--mute);
+  font-size: 0.95rem;
   text-align: center;
 }
 
@@ -311,7 +262,7 @@ h1 {
 h2 {
   padding-top: 2.6rem;
   font-size: 1.05rem;
-  color: var(--sakura);
+  color: var(--mute);
 }
 
 .work ul,
@@ -334,13 +285,6 @@ h2 {
 
 .work-name {
   font-size: 1.2rem;
-}
-
-.work-name::before {
-  content: "\273f";
-  margin-right: 0.45rem;
-  color: var(--sakura);
-  font-size: 0.78em;
 }
 
 .work-body {
@@ -426,11 +370,6 @@ h2 {
   .hero-cat {
     opacity: 1;
     transform: none;
-    animation: none;
-  }
-
-  .seal img,
-  .play-loop g {
     animation: none;
   }
 }
