@@ -6,6 +6,7 @@
   --sakura: #e37a93;
   --display: "BIZ UDPMincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --gait: 0.64s;
 }
 
 *,
@@ -94,25 +95,39 @@ a { color: inherit; }
 .walker.neko-spot .fur { fill: #c69656; }
 .walker.neko-silver .fur { fill: #7a7672; }
 
+.torso {
+  transform-origin: 140px 148px;
+  animation: torso-gait var(--gait) ease-in-out infinite;
+}
 .leg-f {
   transform-origin: 64px 162px;
-  animation: leg-sw 0.62s ease-in-out infinite;
+  animation: leg-a var(--gait) ease-in-out infinite;
 }
 .leg-m {
   transform-origin: 134px 156px;
-  animation: leg-sw2 0.62s ease-in-out infinite;
+  animation: leg-b var(--gait) ease-in-out infinite;
 }
 .leg-r {
   transform-origin: 210px 168px;
-  animation: leg-sw 0.62s ease-in-out infinite;
+  animation: leg-a var(--gait) ease-in-out infinite;
 }
-@keyframes leg-sw {
-  0%, 100% { transform: rotate(12deg); }
-  50% { transform: rotate(-11deg); }
+
+@keyframes torso-gait {
+  0%, 50%, 100% { transform: translate(0, 2px) rotate(-2.2deg); }
+  25% { transform: translate(-1.5px, -4px) rotate(1.6deg); }
+  75% { transform: translate(1.5px, -4px) rotate(-0.8deg); }
 }
-@keyframes leg-sw2 {
-  0%, 100% { transform: rotate(-11deg); }
-  50% { transform: rotate(12deg); }
+@keyframes leg-a {
+  0%, 100% { transform: rotate(13deg); }
+  50% { transform: rotate(-12deg); }
+}
+@keyframes leg-b {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(13deg); }
+}
+@keyframes gait-bob {
+  0%, 50%, 100% { transform: translateY(1px); }
+  25%, 75% { transform: translateY(-4px); }
 }
 
 .roam {
@@ -122,11 +137,7 @@ a { color: inherit; }
   animation: neko-stroll var(--pace, 22s) linear infinite;
 }
 .roam .walker {
-  animation: neko-bob 0.62s ease-in-out infinite;
-}
-@keyframes neko-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+  animation: gait-bob var(--gait) ease-in-out infinite;
 }
 @keyframes neko-stroll {
   0% { transform: translateX(var(--from, 36vw)) scaleX(var(--out, 1)); }
@@ -259,5 +270,5 @@ h2 {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .sky, .roam, .leg-f, .leg-m, .leg-r, .roam .walker { animation: none; }
+  .sky, .roam, .torso, .leg-f, .leg-m, .leg-r, .roam .walker { animation: none; }
 }
