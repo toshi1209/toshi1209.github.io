@@ -1,14 +1,17 @@
 import './style.css'
 
-void fetch('/neko.b64')
-  .then((res) => {
-    if (!res.ok) throw new Error('neko')
-    return res.text()
-  })
-  .then((b64) => {
+void Promise.all(
+  ['/n1.b64', '/n2.b64'].map((path) =>
+    fetch(path).then((res) => {
+      if (!res.ok) throw new Error('neko')
+      return res.text()
+    }),
+  ),
+)
+  .then((parts) => {
     document.documentElement.style.setProperty(
       '--neko',
-      `url("data:image/png;base64,${b64.trim()}")`,
+      `url("data:image/png;base64,${parts.join('').replace(/\s+/g, '')}")`,
     )
   })
   .catch(() => {})
