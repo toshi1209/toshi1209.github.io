@@ -100,34 +100,34 @@ a { color: inherit; }
   animation: torso-gait var(--gait) ease-in-out infinite;
 }
 .leg-f {
-  transform-origin: 64px 162px;
+  transform-origin: 64px 152px;
   animation: leg-a var(--gait) ease-in-out infinite;
 }
 .leg-m {
-  transform-origin: 134px 156px;
+  transform-origin: 134px 150px;
   animation: leg-b var(--gait) ease-in-out infinite;
 }
 .leg-r {
-  transform-origin: 210px 168px;
+  transform-origin: 210px 154px;
   animation: leg-a var(--gait) ease-in-out infinite;
 }
 
 @keyframes torso-gait {
-  0%, 50%, 100% { transform: translate(0, 2px) rotate(-2.2deg); }
-  25% { transform: translate(-1.5px, -4px) rotate(1.6deg); }
-  75% { transform: translate(1.5px, -4px) rotate(-0.8deg); }
+  0%, 50%, 100% { transform: rotate(-1.1deg); }
+  25% { transform: rotate(0.9deg); }
+  75% { transform: rotate(-0.3deg); }
 }
 @keyframes leg-a {
-  0%, 100% { transform: rotate(13deg); }
-  50% { transform: rotate(-12deg); }
+  0%, 100% { transform: rotate(10deg); }
+  50% { transform: rotate(-9deg); }
 }
 @keyframes leg-b {
-  0%, 100% { transform: rotate(-12deg); }
-  50% { transform: rotate(13deg); }
+  0%, 100% { transform: rotate(-9deg); }
+  50% { transform: rotate(10deg); }
 }
 @keyframes gait-bob {
   0%, 50%, 100% { transform: translateY(1px); }
-  25%, 75% { transform: translateY(-4px); }
+  25%, 75% { transform: translateY(-3px); }
 }
 
 .roam {
