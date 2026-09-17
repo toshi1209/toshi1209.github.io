@@ -119,7 +119,10 @@ a {
 
 .neko {
   display: block;
-  background: center / contain no-repeat;
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
+  background-position: 0 0;
+  animation: neko-step 0.38s infinite;
 }
 
 .neko-black { background-image: var(--neko-black); }
@@ -131,6 +134,13 @@ a {
 .neko-spot { background-image: var(--neko-spot); }
 .neko-silver { background-image: var(--neko-silver); }
 
+@keyframes neko-step {
+  0%, 24.9% { background-position: 0 0; }
+  25%, 49.9% { background-position: 33.334% 0; }
+  50%, 74.9% { background-position: 66.667% 0; }
+  75%, 100% { background-position: 100% 0; }
+}
+
 .roam {
   display: block;
   width: max-content;
@@ -139,7 +149,7 @@ a {
 }
 
 .roam .neko {
-  animation: neko-bob 0.55s ease-in-out infinite alternate;
+  animation: neko-step 0.38s infinite, neko-bob 0.38s ease-in-out infinite alternate;
 }
 
 @keyframes neko-bob {
@@ -147,7 +157,7 @@ a {
     transform: translateY(0) rotate(-1.2deg);
   }
   to {
-    transform: translateY(-5px) rotate(1.4deg);
+    transform: translateY(-4px) rotate(1.2deg);
   }
 }
 
@@ -213,13 +223,13 @@ a {
 .neko-mark {
   width: 2.2rem;
   height: 1.5rem;
-  animation: neko-bob 0.7s ease-in-out infinite alternate;
+  animation: neko-step 0.38s infinite, neko-bob 0.5s ease-in-out infinite alternate;
 }
 
 .neko-tiny {
   width: 1.85rem;
   height: 1.25rem;
-  animation: neko-bob 0.65s ease-in-out infinite alternate;
+  animation: neko-step 0.38s infinite, neko-bob 0.5s ease-in-out infinite alternate;
 }
 
 .top,
@@ -330,7 +340,6 @@ h1 {
   padding: 0 0 3.6rem;
 }
 
-.h2,
 h2 {
   padding-top: 1.8rem;
   font-size: 0.82rem;
@@ -437,6 +446,7 @@ h2 {
 
   .sky,
   .roam,
+  .neko,
   .neko-mark,
   .neko-tiny,
   .roam .neko {
