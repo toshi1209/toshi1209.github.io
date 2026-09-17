@@ -1,0 +1,420 @@
+:root {
+  --dusk: #2a2140;
+  --dusk-deep: #1c1730;
+  --paper: #e8dfea;
+  --ink: #2f2438;
+  --lantern: #e09a4a;
+  --lantern-glow: #f3c27a;
+  --petal: #c9849a;
+  --leaf: #3f6a54;
+  --wood: #5c4032;
+  --wood-light: #8b6348;
+  --line: #c9b896;
+  --street: #241c38;
+  --display: "Yuji Syuku", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --body: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--paper);
+  background: var(--street);
+  font-family: var(--body);
+  font-size: 1.08rem;
+  line-height: 1.95;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+.plaque-name,
+.noren {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+h1,
+h2,
+p,
+ul,
+figure {
+  margin: 0;
+}
+
+.skip {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 12;
+  padding: 0.4rem 0.7rem;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.skip:focus {
+  top: 0.75rem;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0.11;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.roofline {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(232, 223, 234, 0.16), transparent 18%),
+    linear-gradient(180deg, #352a52 0%, var(--dusk) 70%, var(--street) 100%);
+}
+
+.moon {
+  position: absolute;
+  top: 1.2rem;
+  right: 7vw;
+  width: 4.6rem;
+}
+
+.houses {
+  width: 100%;
+  height: clamp(9rem, 28vw, 16rem);
+}
+
+.wire {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 6vw;
+  border-top: 2px solid var(--line);
+}
+
+.chochin {
+  position: relative;
+  width: 2.4rem;
+  height: 3.3rem;
+  margin-top: 1.8rem;
+  background:
+    linear-gradient(#5c4032, #5c4032) 50% 0 / 42% 8px no-repeat,
+    linear-gradient(#5c4032, #5c4032) 50% 100% / 42% 8px no-repeat,
+    radial-gradient(circle at 50% 40%, var(--lantern-glow), var(--lantern) 70%);
+  border-radius: 50% 50% 46% 46%;
+  box-shadow: 0 0 24px rgba(240, 162, 74, 0.38);
+  animation: glow 3.8s ease-in-out infinite;
+}
+
+.chochin::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 2px;
+  height: 1.8rem;
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.chochin.tall {
+  margin-top: 2.6rem;
+  animation-duration: 4.6s;
+}
+
+.chochin.short {
+  height: 2.7rem;
+  margin-top: 1.3rem;
+  animation-duration: 3.2s;
+}
+
+@keyframes glow {
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+.street,
+.end {
+  width: min(38rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.street {
+  position: relative;
+  padding: 0 0 3rem;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 18px,
+      rgba(201, 184, 150, 0.05) 18px 19px
+    ),
+    var(--street);
+}
+
+.street::before,
+.street::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(90deg, #1a1430, #2b223f);
+}
+
+.street::before {
+  left: -12px;
+}
+
+.street::after {
+  right: -12px;
+  transform: scaleX(-1);
+}
+
+.gate {
+  padding-top: 0.4rem;
+}
+
+.rod {
+  height: 10px;
+  background: linear-gradient(180deg, #9a7354, var(--wood));
+  box-shadow: 0 4px 0 #16102a;
+}
+
+.noren {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.28rem;
+  margin-bottom: 2.2rem;
+}
+
+.noren p {
+  display: grid;
+  place-items: center;
+  min-height: 7.4rem;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 18%,
+      rgba(232, 223, 234, 0.22) 18% 21%,
+      transparent 21%
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0 8px,
+      transparent 8px 16px
+    ),
+    var(--leaf);
+  color: var(--paper);
+  font-size: clamp(2.4rem, 9vw, 3.3rem);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 88%,
+    82% 100%,
+    64% 90%,
+    50% 100%,
+    36% 90%,
+    18% 100%,
+    0 88%
+  );
+}
+
+h1 {
+  max-width: 10em;
+  font-size: clamp(2.1rem, 8vw, 3.4rem);
+}
+
+.lead,
+.shop-line,
+.workshop-copy,
+.end p {
+  max-width: 21em;
+}
+
+.lead {
+  margin-top: 1rem;
+  color: color-mix(in srgb, var(--paper) 84%, var(--petal));
+}
+
+.sakura {
+  width: 13.5rem;
+  margin: 1.8rem 0 0;
+}
+
+.sakura figcaption {
+  margin-top: 0.15rem;
+  color: var(--petal);
+  font-family: var(--display);
+  font-size: 1.15rem;
+}
+
+.shop,
+.workshop {
+  margin-top: 4rem;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+}
+
+.shop-line {
+  margin: 0.55rem 0 1.3rem;
+  color: color-mix(in srgb, var(--paper) 76%, var(--line));
+}
+
+.plaque {
+  position: relative;
+  width: min(22.5rem, 100%);
+  margin: 2.2rem 0 0 auto;
+  padding: 1.7rem 1.5rem 1.45rem;
+  color: #1a100b;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(26, 16, 11, 0.1) 0 2px,
+      transparent 2px 9px
+    ),
+    linear-gradient(145deg, #d7a56c 0%, #c08958 42%, #8b6348 100%);
+  box-shadow:
+    inset 0 0 0 3px #3d2a1d,
+    6px 10px 0 #16102a;
+  transform: rotate(-1.2deg);
+}
+
+.plaque::before {
+  content: "";
+  position: absolute;
+  top: -2.1rem;
+  left: 50%;
+  width: 3px;
+  height: 2.1rem;
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.plaque::after {
+  content: "";
+  position: absolute;
+  top: -2.35rem;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  background: #c9b896;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px #5c4032;
+}
+
+.plaque-name {
+  font-size: 2.35rem;
+}
+
+.plaque-role {
+  margin: 0.1rem 0 0.85rem;
+}
+
+.stamps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.stamps li {
+  min-width: 4.5rem;
+  padding: 0.32rem 0.4rem 0.2rem;
+  border: 1.5px solid #8b3a4a;
+  background: #f3e6ea;
+  color: #8b3a4a;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.window {
+  margin: 0.3rem 0 1.2rem;
+  padding: 1.3rem 1rem 0.3rem;
+  border: 12px solid #6b4e3d;
+  outline: 3px solid #2a1a12;
+  background:
+    radial-gradient(circle at 50% 28%, #3d3358, #0e0a1a 70%);
+  box-shadow: 0 0 28px rgba(243, 194, 122, 0.16);
+}
+
+.star-tree {
+  width: min(22rem, 100%);
+  margin: 0 auto;
+}
+
+.window-cat {
+  width: 8rem;
+  margin: -0.2rem 0.4rem 0.5rem auto;
+}
+
+.workshop-copy {
+  color: color-mix(in srgb, var(--paper) 84%, var(--lantern-glow));
+}
+
+.end {
+  padding: 1.8rem 0 3.2rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 32%, transparent);
+}
+
+.end a {
+  color: var(--lantern-glow);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.end a:hover,
+.end a:focus-visible {
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lantern);
+  outline-offset: 3px;
+}
+
+@media (max-width: 40rem) {
+  .plaque {
+    margin-left: 0;
+    transform: none;
+  }
+
+  .street::before,
+  .street::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .chochin {
+    animation: none;
+  }
+}
