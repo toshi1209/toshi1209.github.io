@@ -3,6 +3,7 @@
   --ink: #1c1916;
   --mute: #5c564e;
   --line: #d9d0c4;
+  --sakura: #e37a93;
   --display: "BIZ UDPMincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
   --neko-black: url("/neko/black.svg");
@@ -72,6 +73,50 @@ a {
   top: 1rem;
 }
 
+.sky {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+}
+
+.blossom {
+  position: absolute;
+  top: -10vh;
+  left: var(--x, 0);
+  color: var(--sakura);
+  transform-origin: 50% 80%;
+  will-change: transform;
+  animation: blossom-fall var(--dur, 9s) linear var(--delay, 0s) infinite;
+  filter: drop-shadow(0 3px 5px rgba(227, 122, 147, 0.28));
+}
+
+.blossom svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: blossom-sway var(--sway, 1.6s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+
+@keyframes blossom-fall {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(var(--dx, 120px), 122vh, 0) rotate(var(--spin, 480deg));
+  }
+}
+
+@keyframes blossom-sway {
+  from {
+    transform: translateX(-22px) rotate(-32deg) scale(0.9);
+  }
+  to {
+    transform: translateX(24px) rotate(34deg) scale(1.12);
+  }
+}
+
 .neko {
   display: block;
   background: center / contain no-repeat;
@@ -88,6 +133,16 @@ a {
 
 .flip {
   transform: scaleX(-1);
+}
+
+.top,
+.hero,
+.work,
+.about,
+.foot,
+.spot {
+  position: relative;
+  z-index: 3;
 }
 
 .top {
@@ -302,5 +357,9 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .sky {
+    display: none;
   }
 }
